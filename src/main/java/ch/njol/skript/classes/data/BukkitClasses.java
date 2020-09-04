@@ -1839,20 +1839,20 @@ public class BukkitClasses {
 				.usage(Arrays.stream(GameRule.values()).map(GameRule::getName).collect(Collectors.joining(", ")))
 				.since("2.5")
 				.requiredPlugins("Minecraft 1.13 or newer")
-				.parser(new Parser<GameRule>() {
+				.parser(new Parser<GameRule<?>>() {
 					@Override
 					@Nullable
-					public GameRule parse(final String input, final ParseContext context) {
+					public GameRule<?> parse(final String input, final ParseContext context) {
 						return GameRule.getByName(input);
 					}
 					
 					@Override
-					public String toString(GameRule o, int flags) {
+					public String toString(GameRule<?> o, int flags) {
 						return o.getName();
 					}
 					
 					@Override
-					public String toVariableNameString(GameRule o) {
+					public String toVariableNameString(GameRule<?> o) {
 						return o.getName();
 					}
 					

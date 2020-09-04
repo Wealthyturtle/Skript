@@ -44,7 +44,7 @@ public class LiteralUtils {
 	@SuppressWarnings("unchecked")
 	public static <T> Expression<T> defendExpression(Expression<?> expr) {
 		if (expr instanceof ExpressionList) {
-			Expression<?>[] expressions = ((ExpressionList) expr).getExpressions();
+			Expression<?>[] expressions = ((ExpressionList<?>) expr).getExpressions();
 			for (int i = 0; i < expressions.length; i++)
 				expressions[i] = LiteralUtils.defendExpression(expressions[i]);
 		} else if (expr instanceof UnparsedLiteral) {
@@ -65,7 +65,7 @@ public class LiteralUtils {
 		if (expr instanceof UnparsedLiteral) {
 			return true;
 		} else if (expr instanceof ExpressionList) {
-			return Stream.of(((ExpressionList) expr).getExpressions())
+			return Stream.of(((ExpressionList<?>) expr).getExpressions())
 					.anyMatch(e -> e instanceof UnparsedLiteral);
 		}
 		return false;

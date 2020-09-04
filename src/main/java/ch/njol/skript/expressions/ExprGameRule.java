@@ -58,6 +58,7 @@ public class ExprGameRule extends SimpleExpression<GameruleValue> {
 	@SuppressWarnings("null")
 	private Expression<World> world;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
 		gamerule = (Expression<GameRule>) exprs[0];
@@ -77,7 +78,7 @@ public class ExprGameRule extends SimpleExpression<GameruleValue> {
 	public void change(final Event e, final @Nullable Object[] delta, final ChangeMode mode) {
 		assert delta != null;
 		if (mode == ChangeMode.SET) {
-			GameRule bukkitGamerule = gamerule.getSingle(e);
+			GameRule<Object> bukkitGamerule = gamerule.getSingle(e);
 			if (bukkitGamerule == null) 
                 return;
 			for (World gameruleWorld : world.getArray(e))

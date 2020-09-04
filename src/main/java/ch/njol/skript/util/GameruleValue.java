@@ -42,6 +42,6 @@ public class GameruleValue<T> implements YggdrasilSerializable {
 	@Override
 	public boolean equals(@Nullable Object other) {
 		if (!(other instanceof GameruleValue)) return false;
-		return this.gameruleValue.equals(((GameruleValue) other).gameruleValue);
+		return this.gameruleValue.equals(((GameruleValue<?>) other).gameruleValue);
 	}
 }

@@ -59,7 +59,7 @@ public class ScriptFunction<T> extends Function<T> {
 	 * @param e
 	 * @param value
 	 */
-	public final void setReturnValue(final FunctionEvent e, final @Nullable T[] value) {
+	public final void setReturnValue(final FunctionEvent<?> e, final @Nullable T[] value) {
 		assert !returnValueSet;
 		returnValueSet = true;
 		returnValue = value;
@@ -69,7 +69,7 @@ public class ScriptFunction<T> extends Function<T> {
 	// REM: use patterns, e.g. {_a%b%} is like "a.*", and thus subsequent {_axyz} may be set and of that type.
 	@Override
 	@Nullable
-	public T[] execute(final FunctionEvent e, final Object[][] params) {
+	public T[] execute(final FunctionEvent<?> e, final Object[][] params) {
 		if (trigger == null)
 			throw new IllegalStateException("trigger for function is not available");
 		

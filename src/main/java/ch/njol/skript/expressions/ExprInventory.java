@@ -86,7 +86,7 @@ public class ExprInventory extends SimpleExpression<Object> {
 			 */
 			ExprItemsIn expr = new ExprItemsIn();
 			expr.init(new Expression[] {
-					new SimpleExpression() {
+					new SimpleExpression<Object>() {
 						@Override
 						protected Object[] get(Event e) {
 							return invArray;

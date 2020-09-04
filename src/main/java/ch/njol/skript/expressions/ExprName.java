@@ -166,7 +166,7 @@ public class ExprName extends SimplePropertyExpression<Object, String> {
 				return m.hasDisplayName() ? m.getDisplayName() : null;
 			}
 		} else if (HAS_GAMERULES && o instanceof GameRule) {
-            return ((GameRule) o).getName();
+            return ((GameRule<?>) o).getName();
         }
 		return null;
 	}

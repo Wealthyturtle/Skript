@@ -85,7 +85,7 @@ public class ExprSpawnerType extends SimplePropertyExpression<Block, EntityData>
 			CreatureSpawner s = (CreatureSpawner) b.getState();
 			switch (mode) {
 				case SET:
-					s.setSpawnedType(toBukkitEntityType((EntityData) delta[0]));
+					s.setSpawnedType(toBukkitEntityType((EntityData<?>) delta[0]));
 					break;
 				case RESET:
 					s.setSpawnedType(org.bukkit.entity.EntityType.PIG);
@@ -110,7 +110,7 @@ public class ExprSpawnerType extends SimplePropertyExpression<Block, EntityData>
 	 * @param e Skript's EntityData
 	 * @return Bukkit's EntityType
 	 */
-	private static org.bukkit.entity.EntityType toBukkitEntityType(EntityData e){
+	private static org.bukkit.entity.EntityType toBukkitEntityType(EntityData<?> e){
 		return CACHE.get(EntityData.fromClass(e.getType())); // Fix Comparison Issues 
 	}
 	
@@ -119,7 +119,7 @@ public class ExprSpawnerType extends SimplePropertyExpression<Block, EntityData>
 	 * @param e Bukkit's EntityType
 	 * @return Skript's EntityData
 	 */
-	private static EntityData toSkriptEntityData(org.bukkit.entity.EntityType e){
+	private static EntityData<?> toSkriptEntityData(org.bukkit.entity.EntityType e){
 		return CACHE.inverse().get(e);
 	}
 	
