@@ -38,7 +38,7 @@ public class TestFunctions {
 		
 		Functions.registerFunction(new JavaFunction<Boolean>("caseEquals", stringsParam, Classes.getExactClassInfo(Boolean.class), true) {
 			@Override
-			public Boolean[] execute(final FunctionEvent e, final Object[][] params) {
+			public Boolean[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				final Object[] strs = params[0];
 				for (int i = 0; i < strs.length - 1; i++)
 					if (!strs[i].equals(strs[i+1]))

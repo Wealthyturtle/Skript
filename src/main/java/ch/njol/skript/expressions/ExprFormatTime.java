@@ -56,7 +56,7 @@ public class ExprFormatTime extends PropertyExpression<Date, String> {
 	private SimpleDateFormat format;
 
 	@Override
-	@SuppressWarnings("null")
+	@SuppressWarnings({"null", "unchecked"})
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
 		setExpr((Expression<? extends Date>) exprs[0]);
 		if (exprs[1] != null) {

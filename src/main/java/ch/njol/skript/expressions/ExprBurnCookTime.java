@@ -69,6 +69,7 @@ public class ExprBurnCookTime extends PropertyExpression<Block, Timespan> {
 	private boolean cookTime;
 	private boolean isEvent;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
 		cookTime = parseResult.mark == 1;

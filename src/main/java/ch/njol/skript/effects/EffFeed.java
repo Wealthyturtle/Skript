@@ -47,6 +47,7 @@ public class EffFeed extends Effect {
     @Nullable
     private Expression<Number> beefs;
 
+    @SuppressWarnings("unchecked")
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
         players = (Expression<Player>) exprs[0];

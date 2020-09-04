@@ -67,7 +67,7 @@ public class DefaultFunctions {
 		
 		Functions.registerFunction(new JavaFunction<Long>("floor", numberParam, longClass, true) {
 			@Override
-			public Long[] execute(final FunctionEvent e, final Object[][] params) {
+			public Long[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				if (params[0][0] instanceof Long)
 					return new Long[] {(Long) params[0][0]};
 				return new Long[] {Math2.floor(((Number) params[0][0]).doubleValue())};
@@ -77,7 +77,7 @@ public class DefaultFunctions {
 				.since("2.2"));
 		Functions.registerFunction(new JavaFunction<Long>("round", numberParam, longClass, true) {
 			@Override
-			public Long[] execute(final FunctionEvent e, final Object[][] params) {
+			public Long[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				if (params[0][0] instanceof Long)
 					return new Long[] {(Long) params[0][0]};
 				return new Long[] {Math2.round(((Number) params[0][0]).doubleValue())};
@@ -87,7 +87,7 @@ public class DefaultFunctions {
 				.since("2.2"));
 		Functions.registerFunction(new JavaFunction<Long>("ceil", numberParam, longClass, true) {
 			@Override
-			public Long[] execute(final FunctionEvent e, final Object[][] params) {
+			public Long[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				if (params[0][0] instanceof Long)
 					return new Long[] {(Long) params[0][0]};
 				return new Long[] {Math2.ceil(((Number) params[0][0]).doubleValue())};
@@ -97,7 +97,7 @@ public class DefaultFunctions {
 				.since("2.2"));
 		Functions.registerFunction(new JavaFunction<Long>("ceiling", numberParam, longClass, true) {
 			@Override
-			public Long[] execute(final FunctionEvent e, final Object[][] params) {
+			public Long[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				if (params[0][0] instanceof Long)
 					return new Long[] {(Long) params[0][0]};
 				return new Long[] {Math2.ceil(((Number) params[0][0]).doubleValue())};
@@ -108,7 +108,7 @@ public class DefaultFunctions {
 		
 		Functions.registerFunction(new JavaFunction<Number>("abs", numberParam, numberClass, true) {
 			@Override
-			public Number[] execute(final FunctionEvent e, final Object[][] params) {
+			public Number[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				final Number n = (Number) params[0][0];
 				if (n instanceof Byte || n instanceof Short || n instanceof Integer || n instanceof Long)
 					return new Long[] {Math.abs(n.longValue())};
@@ -120,7 +120,7 @@ public class DefaultFunctions {
 		
 		Functions.registerFunction(new JavaFunction<Number>("mod", new Parameter[] {new Parameter<>("d", numberClass, true, null), new Parameter<>("m", numberClass, true, null)}, numberClass, true) {
 			@Override
-			public Number[] execute(final FunctionEvent e, final Object[][] params) {
+			public Number[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				final Number d = (Number) params[0][0];
 				final Number m = (Number) params[1][0];
 				final double mm = m.doubleValue();
@@ -135,7 +135,7 @@ public class DefaultFunctions {
 		
 		Functions.registerFunction(new JavaFunction<Number>("exp", numberParam, numberClass, true) {
 			@Override
-			public Number[] execute(final FunctionEvent e, final Object[][] params) {
+			public Number[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				return new Double[] {Math.exp(((Number) params[0][0]).doubleValue())};
 			}
 		}.description("The exponential function. You probably don't need this if you don't know what this is.")
@@ -143,7 +143,7 @@ public class DefaultFunctions {
 				.since("2.2"));
 		Functions.registerFunction(new JavaFunction<Number>("ln", numberParam, numberClass, true) {
 			@Override
-			public Number[] execute(final FunctionEvent e, final Object[][] params) {
+			public Number[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				return new Double[] {Math.log(((Number) params[0][0]).doubleValue())};
 			}
 		}.description("The natural logarithm. You probably don't need this if you don't know what this is.",
@@ -152,7 +152,7 @@ public class DefaultFunctions {
 				.since("2.2"));
 		Functions.registerFunction(new JavaFunction<Number>("log", new Parameter[] {new Parameter<>("n", numberClass, true, null), new Parameter<>("base", numberClass, true, new SimpleLiteral<Number>(10, false))}, numberClass, true) {
 			@Override
-			public Number[] execute(final FunctionEvent e, final Object[][] params) {
+			public Number[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				return new Double[] {Math.log10(((Number) params[0][0]).doubleValue()) / Math.log10(((Number) params[1][0]).doubleValue())};
 			}
 		}.description("A logarithm, with base 10 if none is specified. This is the inverse operation to exponentiation (for positive bases only), i.e. <code>log(base ^ exponent, base) = exponent</code> for any positive number 'base' and any number 'exponent'.",
@@ -164,7 +164,7 @@ public class DefaultFunctions {
 		
 		Functions.registerFunction(new JavaFunction<Number>("sqrt", numberParam, numberClass, true) {
 			@Override
-			public Number[] execute(final FunctionEvent e, final Object[][] params) {
+			public Number[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				return new Double[] {Math.sqrt(((Number) params[0][0]).doubleValue())};
 			}
 		}.description("The square root, which is the inverse operation to squaring a number (for positive numbers only). This is the same as <code>(argument) ^ (1/2)</code> – other roots can be calculated via <code>number ^ (1/root)</code>, e.g. <code>set {_l} to {_volume}^(1/3)</code>.",
@@ -176,7 +176,7 @@ public class DefaultFunctions {
 		
 		Functions.registerFunction(new JavaFunction<Number>("sin", numberParam, numberClass, true) {
 			@Override
-			public Number[] execute(final FunctionEvent e, final Object[][] params) {
+			public Number[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				return new Double[] {Math.sin(Math.toRadians(((Number) params[0][0]).doubleValue()))};
 			}
 		}.description("The sine function. It starts at 0° with a value of 0, goes to 1 at 90°, back to 0 at 180°, to -1 at 270° and then repeats every 360°. Uses degrees, not radians.")
@@ -184,7 +184,7 @@ public class DefaultFunctions {
 				.since("2.2"));
 		Functions.registerFunction(new JavaFunction<Number>("cos", numberParam, numberClass, true) {
 			@Override
-			public Number[] execute(final FunctionEvent e, final Object[][] params) {
+			public Number[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				return new Double[] {Math.cos(Math.toRadians(((Number) params[0][0]).doubleValue()))};
 			}
 		}.description("The cosine function. This is basically the <a href='#sin'>sine</a> shifted by 90°, i.e. <code>cos(a) = sin(a + 90°)</code>, for any number a. Uses degrees, not radians.")
@@ -192,7 +192,7 @@ public class DefaultFunctions {
 				.since("2.2"));
 		Functions.registerFunction(new JavaFunction<Number>("tan", numberParam, numberClass, true) {
 			@Override
-			public Number[] execute(final FunctionEvent e, final Object[][] params) {
+			public Number[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				return new Double[] {Math.tan(Math.toRadians(((Number) params[0][0]).doubleValue()))};
 			}
 		}.description("The tangent function. This is basically <code><a href='#sin'>sin</a>(arg)/<a href='#cos'>cos</a>(arg)</code>. Uses degrees, not radians.")
@@ -201,7 +201,7 @@ public class DefaultFunctions {
 		
 		Functions.registerFunction(new JavaFunction<Number>("asin", numberParam, numberClass, true) {
 			@Override
-			public Number[] execute(final FunctionEvent e, final Object[][] params) {
+			public Number[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				return new Double[] {Math.toDegrees(Math.asin(((Number) params[0][0]).doubleValue()))};
 			}
 		}.description("The inverse of the <a href='#sin'>sine</a>, also called arcsin. Returns result in degrees, not radians. Only returns values from -90 to 90.")
@@ -209,7 +209,7 @@ public class DefaultFunctions {
 				.since("2.2"));
 		Functions.registerFunction(new JavaFunction<Number>("acos", numberParam, numberClass, true) {
 			@Override
-			public Number[] execute(final FunctionEvent e, final Object[][] params) {
+			public Number[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				return new Double[] {Math.toDegrees(Math.acos(((Number) params[0][0]).doubleValue()))};
 			}
 		}.description("The inverse of the <a href='#cos'>cosine</a>, also called arccos. Returns result in degrees, not radians. Only returns values from 0 to 180.")
@@ -217,7 +217,7 @@ public class DefaultFunctions {
 				.since("2.2"));
 		Functions.registerFunction(new JavaFunction<Number>("atan", numberParam, numberClass, true) {
 			@Override
-			public Number[] execute(final FunctionEvent e, final Object[][] params) {
+			public Number[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				return new Double[] {Math.toDegrees(Math.atan(((Number) params[0][0]).doubleValue()))};
 			}
 		}.description("The inverse of the <a href='#tan'>tangent</a>, also called arctan. Returns result in degrees, not radians. Only returns values from -90 to 90.")
@@ -225,7 +225,7 @@ public class DefaultFunctions {
 				.since("2.2"));
 		Functions.registerFunction(new JavaFunction<Number>("atan2", new Parameter[] {new Parameter<>("x", numberClass, true, null), new Parameter<>("y", numberClass, true, null)}, numberClass, true) {
 			@Override
-			public Number[] execute(final FunctionEvent e, final Object[][] params) {
+			public Number[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				return new Double[] {Math.toDegrees(Math.atan2(((Number) params[1][0]).doubleValue(), ((Number) params[0][0]).doubleValue()))};
 			}
 		}.description("Similar to <a href='#atan'>atan</a>, but requires two coordinates and returns values from -180 to 180.",
@@ -237,7 +237,7 @@ public class DefaultFunctions {
 		
 		Functions.registerFunction(new JavaFunction<Number>("sum", numbersParam, numberClass, true) {
 			@Override
-			public Number[] execute(final FunctionEvent e, final Object[][] params) {
+			public Number[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				final Object[] ns = params[0];
 				double sum = ((Number) ns[0]).doubleValue();
 				for (int i = 1; i < ns.length; i++)
@@ -249,7 +249,7 @@ public class DefaultFunctions {
 				.since("2.2"));
 		Functions.registerFunction(new JavaFunction<Number>("product", numbersParam, numberClass, true) {
 			@Override
-			public Number[] execute(final FunctionEvent e, final Object[][] params) {
+			public Number[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				final Object[] ns = params[0];
 				double product = ((Number) ns[0]).doubleValue();
 				for (int i = 1; i < ns.length; i++)
@@ -262,7 +262,7 @@ public class DefaultFunctions {
 		
 		Functions.registerFunction(new JavaFunction<Number>("max", numbersParam, numberClass, true) {
 			@Override
-			public Number[] execute(final FunctionEvent e, final Object[][] params) {
+			public Number[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				final Object[] ns = params[0];
 				double max = ((Number) ns[0]).doubleValue();
 				for (int i = 1; i < ns.length; i++) {
@@ -277,7 +277,7 @@ public class DefaultFunctions {
 				.since("2.2"));
 		Functions.registerFunction(new JavaFunction<Number>("min", numbersParam, numberClass, true) {
 			@Override
-			public Number[] execute(final FunctionEvent e, final Object[][] params) {
+			public Number[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				final Object[] ns = params[0];
 				double min = ((Number) ns[0]).doubleValue();
 				for (int i = 1; i < ns.length; i++) {
@@ -296,7 +296,7 @@ public class DefaultFunctions {
 		Functions.registerFunction(new JavaFunction<World>("world", new Parameter[] {new Parameter<>("name", Classes.getExactClassInfo(String.class), true, null)}, Classes.getExactClassInfo(World.class), true) {
 			@Override
 			@Nullable
-			public World[] execute(final FunctionEvent e, final Object[][] params) {
+			public World[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				final World w = Bukkit.getWorld((String) params[0][0]);
 				return w == null ? new World[0] : new World[] {w};
 			}
@@ -312,7 +312,7 @@ public class DefaultFunctions {
 				new Parameter<>("yaw", numberClass, true, new SimpleLiteral<Number>(0, true)), new Parameter<>("pitch", numberClass, true, new SimpleLiteral<Number>(0, true))
 		}, Classes.getExactClassInfo(Location.class), true) {
 			@Override
-			public Location[] execute(final FunctionEvent e, final Object[][] params) {
+			public Location[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				return new Location[] {new Location((World) params[3][0],
 						((Number) params[0][0]).doubleValue(), ((Number) params[1][0]).doubleValue(), ((Number) params[2][0]).doubleValue(),
 						((Number) params[4][0]).floatValue(), ((Number) params[5][0]).floatValue())};
@@ -349,7 +349,7 @@ public class DefaultFunctions {
 			
 			@Override
 			@Nullable
-			public Date[] execute(final FunctionEvent e, final Object[][] params) {
+			public Date[] execute(final FunctionEvent<?> e, final Object[][] params) {
 				final Calendar c = Calendar.getInstance();
 				c.setLenient(true);
 				double carry = 0;
@@ -377,7 +377,7 @@ public class DefaultFunctions {
 
 			@Override
 			@Nullable
-			public Vector[] execute(FunctionEvent e, Object[][] params) {
+			public Vector[] execute(FunctionEvent<?> e, Object[][] params) {
 				return new Vector[] {new Vector(((Number)params[0][0]).doubleValue(), ((Number)params[1][0]).doubleValue(), ((Number)params[2][0]).doubleValue())};
 			}
 			
@@ -390,7 +390,7 @@ public class DefaultFunctions {
 				longClass, true) {
 
 			@Override
-			public Long[] execute(FunctionEvent e, Object[][] params) {
+			public Long[] execute(FunctionEvent<?> e, Object[][] params) {
 				long level = (long) params[0][0];
 				long exp = 0;
 			    if (level <= 0)
@@ -415,7 +415,7 @@ public class DefaultFunctions {
 			
 			@Nullable
 			@Override
-			public ColorRGB[] execute(FunctionEvent e, Object[][] params) {
+			public ColorRGB[] execute(FunctionEvent<?> e, Object[][] params) {
 				Long red = (Long) params[0][0],
 					green = (Long) params[1][0],
 					blue = (Long) params[2][0];

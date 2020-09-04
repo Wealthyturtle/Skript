@@ -82,6 +82,7 @@ public class EffConnect extends Effect {
 		return "connect " + players.toString(e, debug) + " to " + server.toString(e, debug);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
 		players = (Expression<Player>) exprs[0];

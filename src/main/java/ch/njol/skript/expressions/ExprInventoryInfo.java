@@ -59,6 +59,7 @@ public class ExprInventoryInfo extends SimpleExpression<Object> {
 	private Expression<Inventory> inventories;
 	private int type;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
 		inventories = (Expression<Inventory>) exprs[0];

@@ -59,7 +59,7 @@ public class ExprElement extends SimpleExpression<Object> {
 	@Nullable
 	private Expression<Number> number;
 	
-	@SuppressWarnings("null")
+	@SuppressWarnings({"null", "unchecked"})
 	@Override
 	public boolean init(final Expression<?>[] exprs, final int matchedPattern, final Kleenean isDelayed, final ParseResult parseResult) {
 		expr = LiteralUtils.defendExpression(exprs[1]);

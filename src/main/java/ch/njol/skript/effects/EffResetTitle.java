@@ -49,6 +49,7 @@ public class EffResetTitle extends Effect {
 	@SuppressWarnings("null")
 	private Expression<Player> recipients;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
 		recipients = (Expression<Player>) exprs[0];

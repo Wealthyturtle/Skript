@@ -59,6 +59,7 @@ public class CondIsLoaded extends Condition {
 	private Expression<World> world;
 	private int pattern;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
 		pattern = matchedPattern;
