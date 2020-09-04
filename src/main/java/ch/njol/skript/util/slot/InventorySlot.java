@@ -30,7 +30,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.eclipse.jdt.annotation.Nullable;
 
-import ch.njol.skript.Skript;
 import ch.njol.skript.bukkitutil.PlayerUtils;
 import ch.njol.skript.registrations.Classes;
 import ch.njol.skript.util.BlockInventoryHolder;
@@ -62,6 +61,8 @@ public class InventorySlot extends SlotWithIndex {
 	@Override
 	@Nullable
 	public ItemStack getItem() {
+		if (index == -999) //Non-existent slot, e.g. Outside GUI 
+			return null;
 		ItemStack item = invi.getItem(index);
 		return item == null  ? new ItemStack(Material.AIR, 1) : item.clone();
 	}
@@ -69,6 +70,21 @@ public class InventorySlot extends SlotWithIndex {
 	@Override
 	public void setItem(final @Nullable ItemStack item) {
 		invi.setItem(index, item != null && item.getType() != Material.AIR ? item : null);
+		if (invi instanceof PlayerInventory)
+			PlayerUtils.updateInventory((Player) invi.getHolder());
+	}
+	
+	@Override
+	public int getAmount() {
+		ItemStack item = invi.getItem(index);
+		return item != null ? item.getAmount() : 0;
+	}
+	
+	@Override
+	public void setAmount(int amount) {
+		ItemStack item = invi.getItem(index);
+		if (item != null)
+			item.setAmount(amount);
 		if (invi instanceof PlayerInventory)
 			PlayerUtils.updateInventory((Player) invi.getHolder());
 	}
